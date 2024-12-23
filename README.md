@@ -1,0 +1,1 @@
+# qrcode-ionic-practice-angular19
