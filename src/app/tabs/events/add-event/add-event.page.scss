@@ -1,0 +1,17 @@
+.file-upload-container {
+    display: flex;
+    align-items: center;
+  }
+  .file-name {
+    margin-left: 10px;
+    font-size: 14px;
+  }
+  .image-preview {
+    width: 100%;
+    max-width: 200px;
+    margin-top: 10px;
+  }
+  ion-item {
+    --inner-padding-end: 0;
+    --inner-padding-start: 0;
+  }

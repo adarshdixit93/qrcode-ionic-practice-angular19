@@ -1,0 +1,15 @@
+{
+  "events": [
+    {
+      "id": "c028",
+      "title": "test event 1",
+      "description": "this os a random test event",
+      "date": "2024-12-31T19:12:00+05:30",
+      "startTime": "2024-12-24T20:00:00+05:30",
+      "endTime": "2024-12-24T23:59:00+05:30",
+      "location": "Surat",
+      "eventType": "meeting",
+      "maxParticipants": 10
+    }
+  ]
+}

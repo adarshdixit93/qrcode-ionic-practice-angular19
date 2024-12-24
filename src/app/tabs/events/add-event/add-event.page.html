@@ -1,0 +1,84 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/events"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ isEdit ? 'Edit Event' : 'Add Event' }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form [formGroup]="eventForm" (ngSubmit)="onSubmit()">
+    <ion-list>
+      <ion-item>
+        <ion-label position="stacked">Event Title</ion-label>
+        <ion-input formControlName="title" type="text" required></ion-input>
+      </ion-item>
+      <ion-note *ngIf="eventForm.get('title')?.hasError('required') && eventForm.get('title')?.touched" color="danger">
+        Event title is required
+      </ion-note>
+
+      <ion-item>
+        <ion-label position="stacked">Description</ion-label>
+        <ion-textarea formControlName="description" rows="3"></ion-textarea>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Date</ion-label>
+        <ion-datetime formControlName="date" display-format="MMM DD, YYYY" picker-format="MMM DD YYYY" presentation="date"></ion-datetime>
+      </ion-item>
+      <ion-note *ngIf="eventForm.get('date')?.hasError('required') && eventForm.get('date')?.touched" color="danger">
+        Date is required
+      </ion-note>
+
+      <ion-item>
+        <ion-label position="stacked">Start Time</ion-label>
+        <ion-datetime formControlName="startTime" display-format="HH:mm" picker-format="HH:mm" presentation="time"></ion-datetime>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">End Time</ion-label>
+        <ion-datetime formControlName="endTime" display-format="HH:mm" picker-format="HH:mm" presentation="time"></ion-datetime>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Location</ion-label>
+        <ion-input formControlName="location" type="text"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Event Type</ion-label>
+        <ion-select formControlName="eventType">
+          <ion-select-option value="meeting">Meeting</ion-select-option>
+          <ion-select-option value="conference">Conference</ion-select-option>
+          <ion-select-option value="workshop">Workshop</ion-select-option>
+          <ion-select-option value="other">Other</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Upload Image/File</ion-label>
+        <div class="file-upload-container">
+          <input type="file" (change)="onFileSelected($event)" #fileInput hidden>
+          <ion-button type="button" fill="outline" (click)="fileInput.click()">
+            <ion-icon name="cloud-upload-outline" slot="start"></ion-icon>
+            Choose File
+          </ion-button>
+          <p *ngIf="selectedFile" class="file-name">Selected: {{selectedFile.name}}</p>
+        </div>
+      </ion-item>
+      <img *ngIf="selectedFile" [src]="filePreview" class="image-preview" />
+
+      <ion-item>
+        <ion-label position="stacked">Maximum Participants</ion-label>
+        <ion-input formControlName="maxParticipants" type="number"></ion-input>
+      </ion-item>
+    </ion-list>
+
+    <div class="ion-padding">
+      <ion-button expand="block" type="submit" [disabled]="!eventForm.valid">
+        {{ isEdit ? 'Update Event' : 'Create Event' }}
+      </ion-button>
+    </div>
+  </form>
+</ion-content>
